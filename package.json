@@ -1,0 +1,11 @@
+{
+  "name": "hakari",
+  "version": "1.0.0",
+  "description": "Betting Mathematics Platform",
+  "scripts": {
+    "deploy": "gh-pages -d ."
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}
