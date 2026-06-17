@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakari - Betting Mathematics</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <header>
+        <div class="logo">
+            <h1>HAKARI</h1>
+            <span class="tagline">Mathematical Edge</span>
+        </div>
+        <nav>
+            <button class="nav-btn active" data-target="betting-section">Arbitrage Betting</button>
+            <button class="nav-btn" data-target="gambling-section">Gambling Strategies</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="betting-section" class="app-section active">
+            <div class="card glass-panel">
+                <div class="card-header">
+                    <h2>Perfect Split Calculator</h2>
+                    <p>Enter the odds for two outcomes and your total investment to find the guaranteed profit split.</p>
+                </div>
+                
+                <div class="input-group">
+                    <label for="total-investment">Total Investment Amount ($)</label>
+                    <input type="number" id="total-investment" placeholder="e.g. 1000" step="0.01" min="0">
+                </div>
+                
+                <div class="odds-row">
+                    <div class="input-group">
+                        <label for="odds-a">Odds A (Decimal)</label>
+                        <input type="number" id="odds-a" placeholder="e.g. 2.10" step="0.01" min="1.01">
+                    </div>
+                    <div class="input-group">
+                        <label for="odds-b">Odds B (Decimal)</label>
+                        <input type="number" id="odds-b" placeholder="e.g. 1.95" step="0.01" min="1.01">
+                    </div>
+                </div>
+
+                <button id="calculate-split" class="primary-btn">Calculate Split</button>
+
+                <div class="results hidden" id="results-panel">
+                    <div class="result-header">
+                        <h3>Optimal Strategy</h3>
+                        <span id="arbitrage-status" class="status-badge"></span>
+                    </div>
+                    
+                    <div class="result-grid">
+                        <div class="result-box">
+                            <span class="label">Stake A</span>
+                            <span class="value" id="stake-a-result">$0.00</span>
+                            <span class="subtext">on Odds A</span>
+                        </div>
+                        <div class="result-box">
+                            <span class="label">Stake B</span>
+                            <span class="value" id="stake-b-result">$0.00</span>
+                            <span class="subtext">on Odds B</span>
+                        </div>
+                    </div>
+
+                    <div class="profit-box" id="profit-container">
+                        <span class="label">Total Payout</span>
+                        <span class="payout-val" id="total-payout">$0.00</span>
+                        <span class="label margin-top">Guaranteed Profit</span>
+                        <span class="profit-val" id="total-profit">$0.00</span>
+                        <span class="roi-val" id="roi-percent">0.00% ROI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gambling-section" class="app-section">
+            <div class="card glass-panel">
+                <div class="card-header">
+                    <h2>Gambling Strategies</h2>
+                    <p>Coming Soon. Advanced bankroll management and statistical gambling tools.</p>
+                </div>
+                <div class="placeholder-content">
+                    <div class="pulse-ring"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
