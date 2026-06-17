@@ -60,9 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const profitEl = document.getElementById('total-profit');
         const profitBox = document.getElementById('profit-container');
         const statusBadge = document.getElementById('arbitrage-status');
+        const minOddsBox = document.getElementById('min-odds-box');
 
         profitEl.textContent = formatter.format(Math.abs(profit));
-        
+
         if (profit > 0) {
             // Arbitrage opportunity!
             profitEl.textContent = '+' + formatter.format(profit);
@@ -70,13 +71,25 @@ document.addEventListener('DOMContentLoaded', () => {
             statusBadge.textContent = 'Arbitrage Found';
             statusBadge.className = 'status-badge status-profit';
             document.getElementById('roi-percent').textContent = `+${roi.toFixed(2)}% ROI`;
+            minOddsBox.classList.add('hidden');
         } else {
-            // Loss
+            // Guaranteed Loss — calculate minimum odds needed on each side
             profitEl.textContent = '-' + formatter.format(Math.abs(profit));
             profitBox.classList.add('loss');
             statusBadge.textContent = 'Guaranteed Loss';
             statusBadge.className = 'status-badge status-loss';
             document.getElementById('roi-percent').textContent = `${roi.toFixed(2)}% ROI`;
+
+            // Math: for breakeven, impliedA + impliedB = 1
+            // Keep oddsB fixed → minOddsA = oddsB / (oddsB - 1)
+            // Keep oddsA fixed → minOddsB = oddsA / (oddsA - 1)
+            // Add a tiny buffer (0.001) to guarantee PROFIT, not just breakeven
+            const minOddsA = (oddsB / (oddsB - 1)) + 0.001;
+            const minOddsB = (oddsA / (oddsA - 1)) + 0.001;
+
+            document.getElementById('min-odds-a').textContent = minOddsA.toFixed(3);
+            document.getElementById('min-odds-b').textContent = minOddsB.toFixed(3);
+            minOddsBox.classList.remove('hidden');
         }
 
         resultsPanel.classList.remove('hidden');

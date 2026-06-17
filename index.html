@@ -76,6 +76,27 @@
                         <span class="profit-val" id="total-profit">$0.00</span>
                         <span class="roi-val" id="roi-percent">0.00% ROI</span>
                     </div>
+
+                    <div class="min-odds-box hidden" id="min-odds-box">
+                        <div class="min-odds-header">
+                            <span class="min-odds-icon">⚠️</span>
+                            <span>To Make a Profit, You Need Better Odds</span>
+                        </div>
+                        <p class="min-odds-desc">With the current odds, no amount of capital guarantees a profit. Here's the <strong>minimum odds</strong> required on either side to create an arbitrage opportunity:</p>
+                        <div class="min-odds-grid">
+                            <div class="min-odds-item">
+                                <span class="min-label">Min Odds A Needed</span>
+                                <span class="min-value" id="min-odds-a">—</span>
+                                <span class="min-sub">(keeping Odds B fixed)</span>
+                            </div>
+                            <div class="min-odds-item">
+                                <span class="min-label">Min Odds B Needed</span>
+                                <span class="min-value" id="min-odds-b">—</span>
+                                <span class="min-sub">(keeping Odds A fixed)</span>
+                            </div>
+                        </div>
+                        <p class="min-odds-tip">💡 Shop for these odds on other bookmakers to guarantee a profit with any investment amount.</p>
+                    </div>
                 </div>
             </div>
         </section>
