@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentCalculation = null; // Store last calc for saving
     let profitChartInstance = null;
 
-    const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+    const formatter = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' });
 
     // --- DOM Elements ---
     const navBtns = document.querySelectorAll('.nav-btn');
@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     y: { 
                         ticks: { 
                             color: '#8b9bb4',
-                            callback: function(value) { return '$' + value; }
+                            callback: function(value) { return '₹' + value; }
                         }, 
                         grid: { color: 'rgba(255,255,255,0.05)' } 
                     }
