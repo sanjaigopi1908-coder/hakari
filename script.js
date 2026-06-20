@@ -158,8 +158,11 @@ document.addEventListener('DOMContentLoaded', () => {
             profit: profit
         };
 
-        if (currentUser) {
+        // Only show Place Bet button if the user is logged in AND it's a profitable arbitrage bet
+        if (currentUser && profit > 0) {
             saveBetBtn.classList.remove('hidden');
+        } else {
+            saveBetBtn.classList.add('hidden');
         }
     });
 
@@ -167,11 +170,14 @@ document.addEventListener('DOMContentLoaded', () => {
     saveBetBtn.addEventListener('click', () => {
         if (!currentUser || !currentCalculation) return;
 
+        const isSure = confirm('Are you sure you want to place this bet?');
+        if (!isSure) return;
+
         let history = JSON.parse(localStorage.getItem(`history_${currentUser}`) || '[]');
         history.push(currentCalculation);
         localStorage.setItem(`history_${currentUser}`, JSON.stringify(history));
 
-        alert('Bet saved to dashboard!');
+        alert('Bet placed successfully and saved to your dashboard!');
         saveBetBtn.classList.add('hidden'); // Prevent multiple saves
         currentCalculation = null; // Reset
     });
@@ -199,7 +205,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const listEl = document.getElementById('history-list');
         listEl.innerHTML = '';
         [...history].reverse().forEach(item => {
-            const dateStr = new Date(item.date).toLocaleDateString();
+            const dateObj = new Date(item.date);
+            const dateStr = dateObj.toLocaleDateString() + ' ' + dateObj.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
             const profitStr = (item.profit >= 0 ? '+' : '-') + formatter.format(Math.abs(item.profit));
             const colorClass = item.profit >= 0 ? 'win' : 'loss';
 
