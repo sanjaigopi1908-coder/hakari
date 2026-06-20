@@ -6,6 +6,8 @@
     <title>Hakari - Betting Mathematics</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Chart.js for Profit/Loss tracking -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="background-effects">
@@ -19,8 +21,10 @@
             <span class="tagline">Mathematical Edge</span>
         </div>
         <nav>
-            <button class="nav-btn active" data-target="betting-section">Arbitrage Betting</button>
-            <button class="nav-btn" data-target="gambling-section">Gambling Strategies</button>
+            <button class="nav-btn active" data-target="betting-section">Arbitrage</button>
+            <button class="nav-btn" data-target="dashboard-section" id="nav-dashboard">Dashboard</button>
+            <button class="nav-btn" data-target="gambling-section">Strategies</button>
+            <button class="auth-btn" id="nav-auth-btn">Login</button>
         </nav>
     </header>
 
@@ -97,6 +101,8 @@
                         </div>
                         <p class="min-odds-tip">⚡ This is a <strong>risk bet</strong>, not guaranteed. Only one side will win. Use this to decide if the risk is worth the recovery.</p>
                     </div>
+
+                    <button id="save-bet-btn" class="secondary-btn hidden" style="margin-top: 1rem;">Save Result to Dashboard</button>
                 </div>
             </div>
         </section>
@@ -112,7 +118,67 @@
                 </div>
             </div>
         </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard-section" class="app-section">
+            <div class="card glass-panel">
+                <div class="card-header">
+                    <h2>Performance Dashboard</h2>
+                    <p>Track your betting history and overall profit trajectory.</p>
+                </div>
+                
+                <div class="dashboard-stats">
+                    <div class="stat-box">
+                        <span class="stat-label">Total Bets</span>
+                        <span class="stat-value" id="dash-total-bets">0</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Net Profit</span>
+                        <span class="stat-value" id="dash-net-profit">$0.00</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Win Rate</span>
+                        <span class="stat-value" id="dash-win-rate">0%</span>
+                    </div>
+                </div>
+
+                <div class="chart-container" style="position: relative; height:300px; width:100%; margin-top: 2rem;">
+                    <canvas id="profitChart"></canvas>
+                </div>
+
+                <div class="history-list-container" style="margin-top: 2rem;">
+                    <h3>Recent History</h3>
+                    <ul id="history-list" class="history-list">
+                        <!-- History items injected via JS -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+
     </main>
+
+    <!-- Login Modal -->
+    <div id="auth-modal" class="modal hidden">
+        <div class="modal-content glass-panel">
+            <span class="close-modal">&times;</span>
+            <h2 id="auth-title">Login</h2>
+            <form id="auth-form">
+                <div class="input-group">
+                    <label for="auth-email">Email</label>
+                    <input type="email" id="auth-email" required placeholder="your@email.com">
+                </div>
+                <div class="input-group">
+                    <label for="auth-password">Password</label>
+                    <input type="password" id="auth-password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="primary-btn" id="auth-submit-btn">Sign In</button>
+            </form>
+            <p class="auth-switch">
+                <span id="auth-switch-text">Don't have an account?</span> 
+                <a href="#" id="auth-switch-link">Sign Up</a>
+            </p>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

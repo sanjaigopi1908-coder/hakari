@@ -477,3 +477,130 @@ input:focus {
     line-height: 1.5;
     border-left: 3px solid var(--primary);
 }
+/* Auth Button & Secondary Buttons */
+.auth-btn {
+    background: linear-gradient(135deg, var(--secondary), #4000ff);
+    border: none;
+    color: var(--text-main);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(112, 0, 255, 0.3);
+}
+.auth-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(112, 0, 255, 0.5);
+}
+
+.secondary-btn {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 10px;
+    border: 1px solid var(--primary);
+    background: rgba(0, 240, 255, 0.1);
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.secondary-btn:hover {
+    background: rgba(0, 240, 255, 0.2);
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+.modal.hidden {
+    display: none;
+}
+.modal-content {
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    padding: 2.5rem;
+    animation: fadeIn 0.3s ease-out;
+}
+.close-modal {
+    position: absolute;
+    top: 1rem; right: 1.5rem;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+.close-modal:hover { color: var(--text-main); }
+.modal-content h2 { margin-bottom: 1.5rem; text-align: center; }
+.auth-switch { text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted); }
+.auth-switch a { color: var(--primary); text-decoration: none; font-weight: 600; }
+.auth-switch a:hover { text-decoration: underline; }
+
+/* Dashboard */
+.dashboard-stats {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.stat-box {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.2rem;
+    text-align: center;
+}
+.stat-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+/* History List */
+.history-list-container h3 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+.history-list {
+    list-style: none;
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+.history-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.history-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+.history-date { font-size: 0.75rem; color: var(--text-muted); }
+.history-type { font-size: 0.9rem; font-weight: 600; color: var(--text-main); }
+.history-profit { font-weight: 800; font-size: 1.1rem; }
+.history-profit.win { color: var(--success); }
+.history-profit.loss { color: var(--danger); }
