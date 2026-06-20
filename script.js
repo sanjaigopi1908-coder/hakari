@@ -80,15 +80,14 @@ document.addEventListener('DOMContentLoaded', () => {
             statusBadge.className = 'status-badge status-loss';
             document.getElementById('roi-percent').textContent = `${roi.toFixed(2)}% ROI`;
 
-            // Math: for breakeven, impliedA + impliedB = 1
-            // Keep oddsB fixed → minOddsA = oddsB / (oddsB - 1)
-            // Keep oddsA fixed → minOddsB = oddsA / (oddsA - 1)
-            // Add a tiny buffer (0.001) to guarantee PROFIT, not just breakeven
-            const minOddsA = (oddsB / (oddsB - 1)) + 0.001;
-            const minOddsB = (oddsA / (oddsA - 1)) + 0.001;
+            // Math: How much extra capital is needed on each side to break even if that side wins
+            // Extra A = (Total Investment - Total Payout) / (Odds A - 1)
+            // We add 0.01 to ensure a tiny profit rather than exact break even
+            const extraCapA = ((totalInvestment - totalPayout) / (oddsA - 1)) + 0.01;
+            const extraCapB = ((totalInvestment - totalPayout) / (oddsB - 1)) + 0.01;
 
-            document.getElementById('min-odds-a').textContent = minOddsA.toFixed(3);
-            document.getElementById('min-odds-b').textContent = minOddsB.toFixed(3);
+            document.getElementById('min-odds-a').textContent = formatter.format(extraCapA);
+            document.getElementById('min-odds-b').textContent = formatter.format(extraCapB);
             minOddsBox.classList.remove('hidden');
         }
 
